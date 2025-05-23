@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warsztaty: AI w pracy naukowej</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 2em; }
+    h1, h2 { color: #2c3e50; }
+    .section { background: #fff; padding: 1.5em; margin: 2em 0; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    label { font-weight: bold; display: block; margin-top: 1em; }
+    textarea { width: 100%; height: 100px; margin-top: 0.5em; border-radius: 5px; padding: 0.5em; border: 1px solid #ccc; }
+    .tool-links { background: #eef2f7; padding: 1em; margin: 1em 0; border-left: 5px solid #0077cc; }
+    .tool-links a { display: inline-block; margin-right: 1em; color: #0077cc; text-decoration: none; }
+    button {
+      margin-top: 2em;
+      padding: 1em 2em;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Warsztaty: Zastosowanie AI w pracy naukowej</h1>
+  <p>Przejdź przez poniższe etapy pracy naukowej zgodnie z prezentacją. W każdym kroku skorzystaj z podanych narzędzi i uzupełnij odpowiednie pola tekstowe.</p>
+
+  <div class="tool-links">
+    <strong>Przydatne narzędzia:</strong><br>
+    <a href="https://elicit.org" target="_blank">Elicit</a>
+    <a href="https://www.perplexity.ai" target="_blank">Perplexity AI</a>
+    <a href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">PubMed</a>
+    <a href="https://www.askyourpdf.com" target="_blank">AskYourPDF</a>
+    <a href="https://chat.openai.com" target="_blank">ChatGPT</a>
+  </div>
+
+  <form id="exerciseForm">
+    <div class="section">
+      <label>Nazwa grupy:</label>
+      <textarea name="group_name" placeholder="Wprowadź nazwę swojej grupy"></textarea>
+    </div>
+    <div class="section">
+      <h2>AGENT 1 – Research Farmer</h2>
+<p><strong>🎯 Cel agenta:</strong> Sformułowanie pytania badawczego w formacie PICO oraz wygenerowanie trafnych fraz wyszukiwania.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Przekształć poniższy temat w pytanie badawcze zgodne z PICO oraz wygeneruj listę 5 fraz do przeszukiwania baz naukowych: Wpływ diety ketogenicznej na funkcje poznawcze u osób starszych.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      
+      <label>Frazy kluczowe:</label>
+      <textarea name="agent1_keywords"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 2 – Literature Retriever</h2>
+<p><strong>🎯 Cel agenta:</strong> Wyszukiwanie aktualnych i wiarygodnych publikacji naukowych odpowiadających pytaniu PICO.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Wyszukaj aktualne publikacje naukowe (z ostatnich 5 lat) dotyczące wpływu diety ketogenicznej na funkcje poznawcze u osób powyżej 60 r.ż. Skorzystaj z fraz: ketogenic diet, cognitive function, older adults.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://elicit.org' target='_blank'>Elicit</a>, <a href='https://www.perplexity.ai' target='_blank'>Perplexity</a>, <a href='https://pubmed.ncbi.nlm.nih.gov' target='_blank'>PubMed</a></p>
+      <label>Publikacje i podsumowania:</label>
+      <textarea name="agent2_summary"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 3 – Extractor</h2>
+<p><strong>🎯 Cel agenta:</strong> Wyodrębnienie kluczowych danych z publikacji, takich jak liczba uczestników, typ interwencji, wyniki i dane statystyczne.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Z pliku PDF wyciągnij informacje: liczba uczestników, rodzaj interwencji, grupa kontrolna, czas trwania badania, wyniki, p-wartości. Artykuł dotyczy wpływu diety ketogenicznej na funkcje poznawcze u osób starszych.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://www.askyourpdf.com' target='_blank'>AskYourPDF</a>, <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      <label>Dane z publikacji:</label>
+      <textarea name="agent3_data"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 4 – Synthesizer</h2>
+<p><strong>🎯 Cel agenta:</strong> Porównanie wyników kilku badań i zidentyfikowanie trendów, różnic i luk badawczych.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Porównaj wyniki trzech badań oceniających wpływ diety ketogenicznej na pamięć i uwagę u osób powyżej 60 r.ż. Wskaż podobieństwa, różnice i ograniczenia.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      <label>Podsumowanie porównania:</label>
+      <textarea name="agent4_summary"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 5 – Hypothesis Generator</h2>
+<p><strong>🎯 Cel agenta:</strong> Wygenerowanie hipotezy badawczej i zarysu badania na podstawie wcześniejszej analizy literatury.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Na podstawie porównanych badań zaproponuj hipotezę badawczą oraz podstawowe założenia badania, które mogłoby ją przetestować. Uwzględnij grupę badaną, interwencję, zmienną zależną i sposób pomiaru.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      <label>Hipoteza:</label>
+      <textarea name="agent5_hypothesis"></textarea>
+      <label>Zarys badania:</label>
+      <textarea name="agent5_plan"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 6 – Draft Writer</h2>
+<p><strong>🎯 Cel agenta:</strong> Stworzenie szkicu pracy naukowej zawierającego tytuł, streszczenie i strukturę sekcji.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Na podstawie poniższej hipotezy wygeneruj zarys struktury pracy naukowej oraz przykładowe streszczenie (maksymalnie 300 słów).”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      <label>Tytuł roboczy:</label>
+      <textarea name="agent6_title"></textarea>
+      <label>Streszczenie:</label>
+      <textarea name="agent6_abstract"></textarea>
+      <label>Układ sekcji:</label>
+      <textarea name="agent6_structure"></textarea>
+    </div>
+
+    <div class="section">
+      <h2>AGENT 7 – Critic</h2>
+<p><strong>🎯 Cel agenta:</strong> Ocena projektu pod kątem spójności logicznej, metodologicznej i zgodności z zasadami EBM.</p>
+<p><strong>🧾 Przykładowy prompt:</strong> „Czy w powyższym streszczeniu lub planie badania występują błędy logiczne, ryzyko biasu lub nieścisłości z zasadami EBM? Wypisz uwagi i zaproponuj sposoby poprawy.”</p>
+<p><strong>🛠 Narzędzia:</strong> <a href='https://chat.openai.com' target='_blank'>ChatGPT</a></p>
+      <label>Analiza projektu:</label>
+      <textarea name="agent7_review"></textarea>
+    </div>
+
+    <button type="button" onclick="downloadAnswers()">📥 Pobierz moje odpowiedzi</button>
+  </form>
+
+  <script>
+    function downloadAnswers() {
+      const form = document.getElementById('exerciseForm');
+      const formData = new FormData(form);
+      let output = 'Moje odpowiedzi z warsztatów AI w pracy naukowej:\n\n';
+      for (const [key, value] of formData.entries()) {
+        output += `${key}:\n${value}\n\n`;
+      }
+      const blob = new Blob([output], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'warsztaty_ai_odpowiedzi.txt';
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
